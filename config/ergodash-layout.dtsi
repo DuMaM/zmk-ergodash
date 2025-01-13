@@ -1,0 +1,35 @@
+#include <physical_layouts.dtsi>
+
+/ {
+    ergodash_physical_layout: macropad_physical_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Ergodash Default Layout";
+        transform = <&default_transform>;
+        kscan = <&kscan0>;
+        keys  //                     w   h    x    y     rot    rx    ry
+            = <&key_physical_attrs 100 100    0    0       0     0     0>
+            , <&key_physical_attrs 100 100  100    0       0     0     0>
+            , <&key_physical_attrs 100 100    0  100       0     0     0>
+            , <&key_physical_attrs 100 100  100  100       0     0     0>
+            ;
+    };
+
+
+    keypad_position_map {
+        // Other properties
+
+        ergodash_map: map {
+            physical-layout = <&ergodash_physical_layout>;
+            positions // This is equivalent to `positions = <0 1 2 3>;`, reshaped for readability
+                = < 0  1 >
+                , < 2  3 >;
+        };
+    };
+
+    chosen {
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &ergodash_physical_layout;
+        // Other chosen items
+    };
+
+};
